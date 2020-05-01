@@ -1,5 +1,5 @@
 <h1>{{ recipe.title }}</h1>
-<h3>Written By: <a href="">{{recipe.author}}</a></h3>
+<h3>Written By: <a href="{% url 'author-detail' recipe.author.pk %}">{{recipe.author}}</a></h3>
 <h5>Time Required: {{recipe.time_required}}</h5>
 <h4>Recipe Description</h4>
 <p>{{recipe.description}}</p>
@@ -7,4 +7,4 @@
 <p>{{recipe.instructions}}</p>
 <br />
 <br />
-<a href="../">Return Home</a>
+<a href="../">Return To The Recipe List</a>
