@@ -1,0 +1,12 @@
+<h1>Recipes List</h1>
+
+<ul>
+{% for recipe in recipes_list%}
+<li>
+<a href="{% url 'recipe-detail' recipe.pk %}">{{recipe.title}}</a>
+</li>
+{% endfor %}
+</ul>
+<br/>
+<br/>
+<a href="../">Return Home</a>
