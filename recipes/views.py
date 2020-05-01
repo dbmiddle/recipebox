@@ -5,3 +5,11 @@ from django.shortcuts import render
 
 def index(request):
     return render(request, 'index.html')
+
+
+def details(request):
+    return render(request, 'details.html')
+
+
+def author(request):
+    return render(request, 'author.html')
