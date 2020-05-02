@@ -1,6 +1,13 @@
 <h1>Chef {{ author.name }}</h1>
 <h3>Bio:</h3>
 <p>{{ author.bio }}</p>
+<h3>Recipes By This Author:</h3>
+
+{% for recipe in personal_recipe_list%}
+<li>
+<a href="">{{recipe.title}}</a>
+</li>
+{% endfor %}
 <br />
 <br />
 <a href="../">Return To The Recipe List</a>
