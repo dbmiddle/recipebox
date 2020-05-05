@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from recipes.models import Recipe, Author
+from recipes.forms import RecipeAddForm, AuthorAddForm
 # Create your views here.
 
 
@@ -10,7 +11,10 @@ def index(request):
 
 
 def recipe_add(request):
-    pass
+    html = "recipeaddform.html"
+    form = RecipeAddForm()
+
+    return render(request, html, {"form": form})
 
 
 def author_add(request):
