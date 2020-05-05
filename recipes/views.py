@@ -9,6 +9,14 @@ def index(request):
     return render(request, 'index.html')
 
 
+def recipe_add(request):
+    pass
+
+
+def author_add(request):
+    pass
+
+
 class RecipeListView(ListView):
     model = Recipe
     context_object_name = 'recipes_list'
