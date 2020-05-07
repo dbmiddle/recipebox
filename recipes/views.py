@@ -1,17 +1,47 @@
-from django.shortcuts import render, reverse, HttpResponseRedirect
+from django.shortcuts import render, reverse, HttpResponseRedirect, redirect
+from django.contrib import messages
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from recipes.models import Recipe, Author
-from recipes.forms import RecipeAddForm, AuthorAddForm
+from recipes.forms import RecipeAddForm, AuthorAddForm, LoginForm
 # Create your views here.
+
+
+def loginview(request):
+    html = 'genericform.html'
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            user = authenticate(
+                request, username=data['username'], password=data['password']
+            )
+            if user:
+                login(request, user)
+                return HttpResponseRedirect(
+                    request.GET.get('next', reverse('recipe-list'))
+                )
+    form = LoginForm()
+    return render(request, html, {'form': form})
+
+
+def logoutview(request):
+    logout(request)
+    messages.info(request, "Logged out successfully!")
+    return HttpResponseRedirect(reverse('recipe-list'))
 
 
 def index(request):
     return render(request, 'index.html')
 
 
+@login_required
 def recipeadd(request):
-    html = 'recipeaddform.html'
+    html = 'genericform.html'
 
     if request.method == "POST":
         form = RecipeAddForm(request.POST)
@@ -30,8 +60,10 @@ def recipeadd(request):
     return render(request, html, {"form": form})
 
 
+@login_required
+@staff_member_required
 def authoradd(request):
-    html = 'authoraddform.html'
+    html = 'genericform.html'
 
     if request.method == "POST":
         form = AuthorAddForm(request.POST)
@@ -41,6 +73,7 @@ def authoradd(request):
                 name=data["name"],
                 bio=data["bio"]
             )
+            messages.info(request, "Author created successfully!")
             return HttpResponseRedirect(reverse('recipe-list'))
 
     form = AuthorAddForm()

@@ -1,7 +1,14 @@
-<h1>Welcome to RecipeBox!</h1>
-
+<h1>RecipeBox</h1>
+{% if user.is_authenticated %}
+  <h2>Welcome Back {{ user.author.name }}!</h2>
 <h2>Enjoy some of our wonderful recipes:</h2>
-
+  <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login-page' %}">Login</a>
+{% endif %}
+<br/>
+<br/>
 <ul>
 {% for recipe in recipes_list%}
 <li>
