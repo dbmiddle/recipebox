@@ -1,8 +1,7 @@
-from django.shortcuts import render, reverse, HttpResponseRedirect, redirect
+from django.shortcuts import render, reverse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
