@@ -32,7 +32,7 @@ def loginview(request):
 def logoutview(request):
     logout(request)
     messages.info(request, "Logged out successfully!")
-    return HttpResponseRedirect(reverse('recipe-list'))
+    return HttpResponseRedirect(reverse('login-page'))
 
 
 def index(request):
