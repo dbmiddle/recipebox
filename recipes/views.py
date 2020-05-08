@@ -60,8 +60,8 @@ def recipeadd(request):
     return render(request, html, {"form": form})
 
 
-@login_required
 @staff_member_required
+@login_required
 def authoradd(request):
     html = 'genericform.html'
     form = AuthorAddForm()
@@ -69,7 +69,7 @@ def authoradd(request):
         form = AuthorAddForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = User.objects.create(
+            user = User.objects.create_user(
                 username=data['username'],
                 password=data['password'],
             )
