@@ -60,8 +60,8 @@ def recipeadd(request):
     return render(request, html, {"form": form})
 
 
-@staff_member_required
 @login_required
+@staff_member_required
 def authoradd(request):
     html = 'genericform.html'
     form = AuthorAddForm()
