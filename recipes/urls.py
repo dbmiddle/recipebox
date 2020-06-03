@@ -9,5 +9,6 @@ urlpatterns = [
     path('authors/<int:pk>',
          views.AuthorDetailView.as_view(),
          name='author-detail'),
+    path('recipe/edit/<int:id>/', views.EditRecipe.as_view())
 
 ]
