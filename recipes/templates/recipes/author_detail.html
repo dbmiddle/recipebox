@@ -11,5 +11,11 @@
 {% endif %}
 {% endfor %}
 <br />
+<h4>{{ author.name }}'s Favorite Recipes<h4>
+{% for favorite in author.favorite.all %}
+<ul>
+    <li><a href='/recipes/{{ favorite.id }}'>{{ favorite }}<a/></li>
+</ul>
+{% endfor %}
 <br />
 <a href="../">Return To The Recipe List</a>
